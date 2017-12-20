@@ -87,8 +87,16 @@ class QLearningAgent(ReinforcementAgent):
         for action in actions:
             currentQValue = self.getQValue(state, action)
             qValues[action] = currentQValue
-        return qValues.argMax()
-        util.raiseNotDefined()
+            
+        action = qValues.argMax()
+
+        actionlist = list()
+        for a in actions:
+            if qValues[a] == qValues[action]:
+                actionlist.append(a)
+        action = random.choice(actionlist)
+
+        return action
 
     def getAction(self, state):
         """
