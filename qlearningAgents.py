@@ -119,7 +119,7 @@ class QLearningAgent(ReinforcementAgent):
             return action
 
         if chancerandom is True:
-            action = random.choice(legalActions)
+            return random.choice(legalActions)
 
         action = self.computeActionFromQValues(state)
         return action
