@@ -53,8 +53,6 @@ class QLearningAgent(ReinforcementAgent):
         """
         "*** YOUR CODE HERE ***"
         return self.qValues[(state, action)]
-        util.raiseNotDefined()
-
 
     def computeValueFromQValues(self, state):
         """
@@ -90,6 +88,8 @@ class QLearningAgent(ReinforcementAgent):
             
         action = qValues.argMax()
 
+        # Here we check if the action with the maximum Q value is the only action
+        # with that value. If not a random action will be choses of the best ones
         actionlist = list()
         for a in actions:
             if qValues[a] == qValues[action]:
@@ -113,6 +113,9 @@ class QLearningAgent(ReinforcementAgent):
         legalActions = self.getLegalActions(state)
         action = None
         "*** YOUR CODE HERE ***"
+        # We return none if there are no legal actions.
+        # If there are we use the flipcoin to generate a chance based on epsilon
+        # This we use to return either a random action or the optimal action
         chancerandom = util.flipCoin(self.epsilon)
 
         if not legalActions:
