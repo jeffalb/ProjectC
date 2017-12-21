@@ -46,7 +46,10 @@ class ValueIterationAgent(ValueEstimationAgent):
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
         gridStates = self.mdp.getStates()
-
+        
+        # We set the gridstates and use the iterations to calculate the q values
+        # Those are inserted in a copy of the dictionary of the values and set to the 
+        # current values once an iteration is done.
         while self.iterations > 0:
             valuesCopy = util.Counter()
 
@@ -84,6 +87,8 @@ class ValueIterationAgent(ValueEstimationAgent):
           value function stored in self.values.
         """
         "*** YOUR CODE HERE ***"
+        # The algorithm is being applied here using the values store in the dictionary
+        # it is set to 0 for the start state.
         nextStatesAndProbs = self.mdp.getTransitionStatesAndProbs(state, action)
         value = 0
 
@@ -104,6 +109,8 @@ class ValueIterationAgent(ValueEstimationAgent):
           terminal state, you should return None.
         """
         "*** YOUR CODE HERE ***"
+        # Here all values with actions are stored in a counter and the max is used
+        # Ties are broken by first encountered
         actions = self.mdp.getPossibleActions(state)
         qValues = util.Counter()
         for action in actions:
